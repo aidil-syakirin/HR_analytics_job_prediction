@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import LabelEncoder
 
 st.write("""
 # Simple HR Analytics Job Prediction
@@ -10,20 +11,16 @@ This web app predicts whether the workers **LEFT** or not?
 st.sidebar.header('Insert the following Parameter/Characteristic')
 
 def user_defined_features():
-        sast_lvl = st.sidebar.slider('Sastification Level', 0.00, 1.00, 0.50)
-        comp_time = st.sidebar.slider('Years at company', 0.00, 10.00, 2.00)
-        month_hour = st.sidebar.slider('Number of Monthly Hour', 0.00, 400.00, 150.00)
+        sast_lvl = st.sidebar.slider('Sastification Level', 0.0, 1.0, 0.5)
+        comp_time = st.sidebar.slider('Years at company', 0, 10, 2)
+        month_hour = st.sidebar.slider('Number of Monthly Hour', 0, 400, 150)
         work_acc = st.sidebar.selectbox('Has involved in any work accident?',(0,1))
         promo_5y = st.sidebar.selectbox('Any promotion in 5 years?',(0,1))
-        dept = st.sidebar.selectbox('Department',('sales','technical','support','IT','product_mng'))
-        salary = st.sidebar.selectbox('Salary Range',('low', 'medium', 'high'))
         data = {'satisfaction_level': sast_lvl,
-                'average_montly_hours': month_hour,
                 'time_spend_company': comp_time,
+                'average_montly_hours': month_hour,
                 'Work_accident': work_acc,
-                'promotion_last_5years': promo_5y,
-                'Department':dept,
-                'salary': salary}
+                'promotion_last_5years': promo_5y}
         features = pd.DataFrame(data, index=[0])
         return features
 
@@ -38,8 +35,12 @@ worker_data = pd.read_csv("https://raw.githubusercontent.com/richiaidil/HR_analy
 After check with correlation data between features with target, some features will be removed
 '''
 
-worker_data = worker_data.drop(['last_evaluation','number_project'], axis = 1)
-
+worker_data = worker_data.drop(['last_evaluation','number_project','Department','salary'], axis = 1)
+'''
+labelencoder = LabelEncoder()
+data['Department'] = labelencoder.fit_transform(data['Department'])
+data['salary'] = labelencoder.fit_transform(data['salary'])
+'''
 X = worker_data.drop('left',axis=1)
 Y = worker_data['left']
 
