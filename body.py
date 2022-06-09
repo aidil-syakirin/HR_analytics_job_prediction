@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import LabelEncoder
 
 st.write("""
 # Simple HR Analytics Job Prediction
@@ -36,11 +35,7 @@ After check with correlation data between features with target, some features wi
 '''
 
 worker_data = worker_data.drop(['last_evaluation','number_project','Department','salary'], axis = 1)
-'''
-labelencoder = LabelEncoder()
-data['Department'] = labelencoder.fit_transform(data['Department'])
-data['salary'] = labelencoder.fit_transform(data['salary'])
-'''
+
 X = worker_data.drop('left',axis=1)
 Y = worker_data['left']
 
