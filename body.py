@@ -21,7 +21,7 @@ data = {'satisfaction_level': sast_lvl,
         'time_spend_company': comp_time,
         'Work_accident': work_acc,
         'promotion_last_5years': promo_5y,
-        'Department':dept
+        'Department':dept,
         'salary': salary}
 features = pd.DataFrame(data, index=[0])
 
