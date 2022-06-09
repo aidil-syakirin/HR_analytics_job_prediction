@@ -23,8 +23,7 @@ def user_input_features():
             'Work_accident': work_acc,
             'promotion_last_5years': promo_5y,
             'Department':dept
-            'salary' : salary
-             }
+            'salary' : salary}
     features = pd.DataFrame(data, index=[0])
     return features
 
