@@ -7,7 +7,7 @@ st.write("""
 This web app predicts whether the workers **LEFT** or not?
 """)
 
-st.sidebar.header('Insert the following Parameter/Characteristic')
+st.sidebar.header('Insert the following Parameter / Characteristic')
 
 def user_defined_features():
         sast_lvl = st.sidebar.slider('Sastification Level', 0.0, 1.0, 0.5)
@@ -25,14 +25,10 @@ def user_defined_features():
 
 df = user_defined_features()
 
-st.subheader('The worker''s parameters')
+st.subheader('The workers parameter / characteristics')
 st.write(df)
 
 worker_data = pd.read_csv("https://raw.githubusercontent.com/richiaidil/HR_analytics_job_prediction/main/HR_comma_sep.csv")
-
-'''
-After check with correlation data between features with target, some features will be removed
-'''
 
 worker_data = worker_data.drop(['last_evaluation','number_project','Department','salary'], axis = 1)
 
@@ -46,7 +42,7 @@ prediction = clf.predict(df)
 prediction_proba = clf.predict_proba(df)
 
 st.subheader('Class labels and their corresponding index number')
-worker_data.target_names = [1,0]
+worker_data.target_names = ['Left','Stay']
 st.write(worker_data.target_names)
 
 st.subheader('Prediction')
