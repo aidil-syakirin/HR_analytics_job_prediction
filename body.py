@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 
 st.write("""
-# Simple HR Analytics Job Prediction
+# HR Analytics Job Prediction
 This web app predicts whether the workers **LEFT** or not?
 """)
 
