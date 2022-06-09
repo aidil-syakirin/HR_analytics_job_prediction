@@ -9,21 +9,25 @@ This web app predicts whether the workers **LEFT** or not?
 
 st.sidebar.header('Insert the following Parameter/Characteristic')
 
-sast_lvl = st.sidebar.slider('Sastification Level', 0.00, 1.00, 0.50)
-comp_time = st.sidebar.slider('Years at company', 0, 10, 2)
-month_hour = st.sidebar.slider('Number of Monthly Hour', 0, 400, 150)
-work_acc = st.sidebar.selectbox('Has involved in any work accident?',(0,1))
-promo_5y = st.sidebar.selectbox('Any promotion in 5 years?',(0,1))
-dept = st.sidebar.selectbox('Department',('sales','technical','support','IT','product_mng'))
-salary = st.sidebar.selectbox('Salary Range',('low', 'medium', 'high'))
-data = {'satisfaction_level': sast_lvl,
-        'average_montly_hours': month_hour,
-        'time_spend_company': comp_time,
-        'Work_accident': work_acc,
-        'promotion_last_5years': promo_5y,
-        'Department':dept,
-        'salary': salary}
-features = pd.DataFrame(data, index=[0])
+def user_defined_features():
+        sast_lvl = st.sidebar.slider('Sastification Level', 0.00, 1.00, 0.50)
+        comp_time = st.sidebar.slider('Years at company', 0, 10, 2)
+        month_hour = st.sidebar.slider('Number of Monthly Hour', 0, 400, 150)
+        work_acc = st.sidebar.selectbox('Has involved in any work accident?',(0,1))
+        promo_5y = st.sidebar.selectbox('Any promotion in 5 years?',(0,1))
+        dept = st.sidebar.selectbox('Department',('sales','technical','support','IT','product_mng'))
+        salary = st.sidebar.selectbox('Salary Range',('low', 'medium', 'high'))
+        data = {'satisfaction_level': sast_lvl,
+                'average_montly_hours': month_hour,
+                'time_spend_company': comp_time,
+                'Work_accident': work_acc,
+                'promotion_last_5years': promo_5y,
+                'Department':dept,
+                'salary': salary}
+        features = pd.DataFrame(data, index=[0])
+        return features
+
+df = user_defined_features()
 
 st.subheader('The worker''s parameters')
 st.write(df)
