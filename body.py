@@ -47,7 +47,7 @@ st.write(worker_data.target_names)
 
 st.subheader('Prediction')
 #st.write(iris.target_names[prediction])
-st.write(prediction)
+st.write("Left" if prediction == 1 else "Stay")
 
 st.subheader('Prediction Probability')
 st.write(prediction_proba)
