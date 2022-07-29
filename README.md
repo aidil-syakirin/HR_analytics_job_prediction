@@ -1,4 +1,4 @@
-# HR_Analytics_Job_Prediction web app
+# HR Analytics Job Prediction web app
 This web app provide a simple machine learning model to predict the worker will **LEFT** or **STAY**.
 
 ## Table of contents
